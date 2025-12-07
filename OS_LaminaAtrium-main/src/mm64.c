@@ -376,11 +376,10 @@ addr_t vmap_page_range(struct pcb_t *caller,           // process call
   /* TODO: update the rg_end and rg_start of ret_rg 
   */
 
-
+if(ret_rg != NULL) {
   ret_rg->rg_end =  addr + pgnum * PAGING64_PAGESZ;
   ret_rg->rg_start = addr;
-  ret_rg->vmaid = 0;
-
+}
   /* TODO map range of frame to address space
    *      [addr to addr + pgnum*PAGING_PAGESZ
    *      in page table caller->krnl->mm->pgd,
@@ -608,7 +607,7 @@ int print_list_fp(struct framephy_struct *ifp)
   printf("\n");
   while (fp != NULL)
   {
-    printf("fp[" FORMAT_ADDR "]\n", fp->fpn);
+    printf("fp[" FORMAT_ADDR "]\n", (unsigned long long)fp->fpn);
     fp = fp->fp_next;
   }
   printf("\n");
@@ -624,7 +623,7 @@ int print_list_rg(struct vm_rg_struct *irg)
   printf("\n");
   while (rg != NULL)
   {
-    printf("rg[" FORMAT_ADDR "->"  FORMAT_ADDR "]\n", rg->rg_start, rg->rg_end);
+    printf("rg[" FORMAT_ADDR "->"  FORMAT_ADDR "]\n", (unsigned long long)rg->rg_start, (unsigned long long)rg->rg_end);
     rg = rg->rg_next;
   }
   printf("\n");
@@ -640,7 +639,7 @@ int print_list_vma(struct vm_area_struct *ivma)
   printf("\n");
   while (vma != NULL)
   {
-    printf("va[" FORMAT_ADDR "->" FORMAT_ADDR "]\n", vma->vm_start, vma->vm_end);
+    printf("va[" FORMAT_ADDR "->" FORMAT_ADDR "]\n", (unsigned long long)vma->vm_start, (unsigned long long)vma->vm_end);
     vma = vma->vm_next;
   }
   printf("\n");
@@ -654,7 +653,7 @@ int print_list_pgn(struct pgn_t *ip)
   printf("\n");
   while (ip != NULL)
   {
-    printf("va[" FORMAT_ADDR "]-\n", ip->pgn);
+    printf("va[" FORMAT_ADDR "]-\n", (unsigned long long)ip->pgn);
     ip = ip->pg_next;
   }
   printf("\n");
