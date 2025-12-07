@@ -179,6 +179,7 @@ int liballoc(struct pcb_t *proc, addr_t size, uint32_t reg_index)
 
   /* Allocate the region using the internal __alloc logic */
   int val = __alloc(proc, 0, reg_index, size, &addr);
+  printf("%s:%d\n", __func__, __LINE__);
   if (val == -1)
   {
     return -1;
