@@ -1,1 +1,2 @@
-# OS_Lamia
+# OS_LaminaAtrium
+Operating system assignment
