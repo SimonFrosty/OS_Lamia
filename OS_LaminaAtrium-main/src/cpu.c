@@ -65,6 +65,10 @@ int run(struct pcb_t *proc)
 	{
 		return 1;
 	}
+	
+#ifdef MM_PAGING
+    proc->krnl->mm = proc->mm;
+#endif
 
 	struct inst_t ins = proc->code->text[proc->pc];
 	proc->pc++;
