@@ -685,8 +685,8 @@ if (end == -1) {
   }
 
   pgn_start = start >> PAGING64_ADDR_PT_SHIFT;
-  pgn_end = end >> PAGING64_ADDR_PT_SHIFT;
-
+  //pgn_end = end >> PAGING64_ADDR_PT_SHIFT;
+	pgn_end = (end + PAGING64_PAGESZ - 1) / PAGING64_PAGESZ;
   printf("print_pgtbl:\n");
 
 for (addr_t pgn = pgn_start; pgn < pgn_end; pgn++) {
